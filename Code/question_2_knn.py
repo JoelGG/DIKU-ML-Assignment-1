@@ -5,11 +5,11 @@ from matplotlib import pyplot as plt
 
 
 def main():
-    tast_1()
-    tast_2()
+    task_1()
+    task_2()
 
 
-def tast_1():
+def task_1():
     model = np.loadtxt('Code/Data/MNIST-5-6-Subset.txt')
     labels = np.loadtxt('Code/Data/MNIST-5-6-Subset-Labels.txt')
 
@@ -61,7 +61,7 @@ def tast_1():
     plt.cla()
 
 
-def tast_2():
+def task_2():
     model_c_light = np.loadtxt(
         'Code/Data/MNIST-5-6-Subset-Light-Corruption.txt')
     model_c_moderate = np.loadtxt(
@@ -71,12 +71,12 @@ def tast_2():
 
     labels = np.loadtxt('Code/Data/MNIST-5-6-Subset-Labels.txt')
 
-    pl(model_c_light, labels, "light", 80)
-    pl(model_c_moderate, labels, "moderate", 80)
-    pl(model_c_heavy, labels, "heavy", 80)
+    pl_w_corruption(model_c_light, labels, "light", 80)
+    pl_w_corruption(model_c_moderate, labels, "moderate", 80)
+    pl_w_corruption(model_c_heavy, labels, "heavy", 80)
 
 
-def pl(model, labels, c_level, n):
+def pl_w_corruption(model, labels, c_level, n):
     model = model.reshape(1877, 784)
     training = model[:100]
     t_labels = labels[:100]
@@ -133,21 +133,21 @@ def validation_sets_index(n, i, offset):
     return np.reshape(s, (i, n))
 
 
-def knn(S, x, k):
-    s = sorted_distance(x, S)
-    unique, counts = np.unique(s[:, 0][:k], return_counts=True)
-    occ = dict(zip(unique, counts))
-    return max(occ, key=occ.get)
+# Archived inefficient functions
+# def knn(S, x, k):
+#     s = sorted_distance(x, S)
+#     unique, counts = np.unique(s[:, 0][:k], return_counts=True)
+#     occ = dict(zip(unique, counts))
+#     return max(occ, key=occ.get)
 
 
-def sorted_distance(x, X):
-    def k(elem):
-        return distance(x, elem[1])
-    return X[np.apply_along_axis(k, 1, X).argsort()]
+# def sorted_distance(x, X):
+#     def k(elem):
+#         return distance(x, elem[1])
+#     return X[np.apply_along_axis(k, 1, X).argsort()]
 
 
-def distance(x1, x2): return np.linalg.norm(x1 - x2)
-
+# def distance(x1, x2): return np.linalg.norm(x1 - x2)
 
 if __name__ == '__main__':
     main()

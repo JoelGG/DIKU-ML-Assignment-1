@@ -2,6 +2,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 from scipy.optimize import curve_fit
 
+# Multivariate linear regression used, ML method using scikit to sanity-check
+
 
 def main():
     X = np.array([np.arange(0, 6)]).T

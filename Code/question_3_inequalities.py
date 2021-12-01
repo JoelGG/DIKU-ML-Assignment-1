@@ -4,11 +4,11 @@ import math
 
 
 def main():
-    q2(0.5, 20, 0.5, 1.05, 0.05)  # bias of 0.5, 20 repetitions of coin flip
-    q2(0.1, 20, 0.1, 1.05, 0.05)  # bias of 0.1, 20 repetitions of coin flip
+    q(0.5, 20, 0.5, 1.05, 0.05)  # bias of 0.5, 20 repetitions of coin flip
+    q(0.1, 20, 0.1, 1.05, 0.05)  # bias of 0.1, 20 repetitions of coin flip
 
 
-def q2(ex, n, a_start, a_stop, a_step, reps=1000000):
+def q(ex, n, a_start, a_stop, a_step, reps=1000000):
     vx = ex * (1 - ex)
 
     def markov(a): return ex / a
